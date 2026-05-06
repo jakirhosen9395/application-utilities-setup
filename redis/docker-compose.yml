@@ -5,7 +5,7 @@ services:
     hostname: redis
     command: >
       redis-server
-      --requirepass "chanKJhdskHDkA345geme"
+      --requirepass "eOP6QFQ1QbWcCA22S8D1QTv2"
       --appendonly yes
       --dir /data
     ports:
@@ -17,7 +17,7 @@ services:
     restart: unless-stopped
 
     healthcheck:
-      test: ["CMD-SHELL", 'redis-cli -h 127.0.0.1 -p 6379 -a "chanKJhdskHDkA345geme" --no-auth-warning ping | grep -q PONG']
+      test: ["CMD-SHELL", 'redis-cli -h 127.0.0.1 -p 6379 -a "eOP6QFQ1QbWcCA22S8D1QTv2" --no-auth-warning ping | grep -q PONG']
       interval: 10s
       timeout: 5s
       retries: 10

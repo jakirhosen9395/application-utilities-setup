@@ -7,8 +7,8 @@ services:
 
     environment:
       MONGO_INITDB_ROOT_USERNAME: "root"
-      MONGO_INITDB_ROOT_PASSWORD: "NwA0oEu2OtdPzhgYSnrThkG5"
-      MONGO_INITDB_DATABASE: "micro_app_db"
+      MONGO_INITDB_ROOT_PASSWORD: "RYewLs8bHHyEt8hF"
+      MONGO_INITDB_DATABASE: "micro_services_db"
 
     ports:
       - "27017:27017"
@@ -23,7 +23,7 @@ services:
       test:
         [
           "CMD-SHELL",
-          "mongosh --quiet -u root -p NwA0oEu2OtdPzhgYSnrThkG5 --authenticationDatabase admin --eval \"db.adminCommand('ping').ok\" | grep 1"
+          "mongosh --quiet -u root -p RYewLs8bHHyEt8hF --authenticationDatabase admin --eval \"db.adminCommand('ping').ok\" | grep 1"
         ]
       interval: 10s
       timeout: 5s
