@@ -14,7 +14,6 @@ sudo mkdir -p /opt/volumes/postgres/data
 sudo chown -R "${SUDO_USER:-$USER}:${SUDO_USER:-$USER}" /opt/volumes/postgres
 sudo chmod -R 775 /opt/volumes/postgres
 docker compose up -d --build
-docker compose logs postgres
 
 # MongoDB setup
 cd ../mongodb
@@ -22,7 +21,6 @@ sudo mkdir -p /opt/volumes/mongodb/data
 sudo chown -R "${SUDO_USER:-$USER}:${SUDO_USER:-$USER}" /opt/volumes/mongodb
 sudo chmod -R 775 /opt/volumes/mongodb
 docker compose up -d --build
-docker compose logs mongodb
 
 # Redis Setup
 cd ../redis
@@ -30,7 +28,7 @@ sudo mkdir -p /opt/volumes/redis/data
 sudo chown -R "${SUDO_USER:-$USER}:${SUDO_USER:-$USER}" /opt/volumes/redis
 sudo chmod -R 775 /opt/volumes/redis
 docker compose up -d --build
-docker compose logs redis
+
 
 
 # Kafka Setup
@@ -39,7 +37,7 @@ sudo mkdir -p /opt/volumes/kafka/data
 sudo chown -R "${SUDO_USER:-$USER}:${SUDO_USER:-$USER}" /opt/volumes/kafka
 sudo chmod -R 775 /opt/volumes/kafka
 docker compose up -d --build
-docker compose logs kafka
+
 
 
 # RustFS Setup
@@ -54,7 +52,9 @@ sudo chmod -R 775 \
   /opt/volumes/rustfs/data/rustfs-data \
   /opt/volumes/rustfs/data/rustfs-logs
 docker compose up -d --build
-docker compose logs rustfs
+
+cd ..
+docker ps -a
 
 
 
