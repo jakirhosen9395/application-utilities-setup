@@ -1,6 +1,8 @@
+sudo rm -rf /opt/volumes
+
 # APM Server, Elasticsearch, Kibana, and ILM setup
 cd elastic-apm
-cp .env.example .env
+sudo cp .env.example .env
 chmod +x setup.sh
 ./setup.sh
 chmod +x ilm-15-day-retention.sh cleanup-old-indices.sh disk-usage-monitor.sh

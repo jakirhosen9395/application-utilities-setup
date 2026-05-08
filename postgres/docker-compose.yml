@@ -7,7 +7,7 @@ services:
 
     environment:
       POSTGRES_USER: "micro_services_user"
-      POSTGRES_PASSWORD: "qD5pcCMXJD5qFF+I4lX/MEQ/QM41YfD6"
+      POSTGRES_PASSWORD: "qD5pcCMXJD5qFFI4lXMEQQM41YfD6"
       POSTGRES_DB: "micro_services_db"
 
     ports:
