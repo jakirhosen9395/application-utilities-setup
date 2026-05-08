@@ -1,4 +1,4 @@
-sudo rm -rf /opt/volumes
+sudo rm -rf /opt/volumes || true
 
 # APM Server, Elasticsearch, Kibana, and ILM setup
 cd elastic-apm
