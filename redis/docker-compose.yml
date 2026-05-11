@@ -5,7 +5,7 @@ services:
     hostname: redis
     command: >
       redis-server
-      --requirepass "2MgcRWSKolBQ6PWOTsB3SyYjvnnBpNse"
+      --requirepass "rlCeHk6SR2xbSCpthWX0MmC4ieBsKCoX"
       --appendonly yes
       --dir /data
     ports:

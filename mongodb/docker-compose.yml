@@ -6,9 +6,9 @@ services:
     restart: unless-stopped
 
     environment:
-      MONGO_INITDB_ROOT_USERNAME: "micro_services_user"
-      MONGO_INITDB_ROOT_PASSWORD: "qUQPCY51eTZPx6FL7HJjlXjF30vfIhwo"
-      MONGO_INITDB_DATABASE: "micro_services_db"
+      MONGO_INITDB_ROOT_USERNAME: "user_micro_services"
+      MONGO_INITDB_ROOT_PASSWORD: "QHSfHYu4Qc0X7Pf3XCTRCABfyPNkbanc"
+      MONGO_INITDB_DATABASE: "db_micro_services"
 
     ports:
       - "27017:27017"
@@ -23,7 +23,7 @@ services:
       test:
         [
           "CMD-SHELL",
-          "mongosh --quiet -u micro_services_user -p qUQPCY51eTZPx6FL7HJjlXjF30vfIhwo --authenticationDatabase admin --eval \"db.adminCommand('ping').ok\" | grep 1"
+          "mongosh --quiet -u user_micro_services -p QHSfHYu4Qc0X7Pf3XCTRCABfyPNkbanc --authenticationDatabase admin --eval \"db.adminCommand('ping').ok\" | grep 1"
         ]
       interval: 10s
       timeout: 5s

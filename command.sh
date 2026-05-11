@@ -102,3 +102,4 @@ docker compose down -v
 # RustFS Setup
 cd ../rustfs
 docker compose down -v
+cd ..
