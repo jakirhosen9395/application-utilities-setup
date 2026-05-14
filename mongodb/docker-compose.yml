@@ -6,8 +6,8 @@ services:
     restart: unless-stopped
 
     environment:
-      MONGO_INITDB_ROOT_USERNAME: "mongodb_user_micro_services"
-      MONGO_INITDB_ROOT_PASSWORD: "QHSfHYu4Qc0X7Pf3XCTRCABfyPNkbancQHSfHYu4Qc0X7Pf3XCTRCABfyPNkbanc"
+      MONGO_INITDB_ROOT_USERNAME: "mongodb_postgres_user_micro_services"
+      MONGO_INITDB_ROOT_PASSWORD: "QHSfHYu4Qc0X7Pf3XCTRCABfyPNkbancQHSfHYu4Qc0X7Pf3XCTRCABfyPNkbancQHSfHYu4Qc0X7Pf3XCTRCABfyPNkbancQHSfHYu4Qc0X7Pf3XCTRCABfyPNkbanc"
       MONGO_INITDB_DATABASE: "mongo_db_micro_services"
 
     ports:
@@ -23,7 +23,7 @@ services:
       test:
         [
           "CMD-SHELL",
-          "mongosh --quiet -u mongodb_user_micro_services -p QHSfHYu4Qc0X7Pf3XCTRCABfyPNkbancQHSfHYu4Qc0X7Pf3XCTRCABfyPNkbanc --authenticationDatabase admin --eval \"db.adminCommand('ping').ok\" | grep 1"
+          "mongosh --quiet -u mongodb_postgres_user_micro_services -p QHSfHYu4Qc0X7Pf3XCTRCABfyPNkbancQHSfHYu4Qc0X7Pf3XCTRCABfyPNkbancQHSfHYu4Qc0X7Pf3XCTRCABfyPNkbancQHSfHYu4Qc0X7Pf3XCTRCABfyPNkbanc --authenticationDatabase admin --eval \"db.adminCommand('ping').ok\" | grep 1"
         ]
       interval: 10s
       timeout: 5s
