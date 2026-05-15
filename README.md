@@ -278,6 +278,19 @@ sudo ls -lah /opt/volumes/kafka/data
 sudo ls -lah /opt/volumes/rustfs/data
 sudo ls -lah /opt/volumes/npm
 ```
+RustFS permission note:
+
+- RustFS runs inside the container as UID/GID `10001`.
+- The script sets RustFS host directories to `10001:10001` and permission `755`.
+- This prevents the `Permission denied (os error 13)` restart loop on `/data` or the log directory.
+- If you manually create or restore RustFS data, fix permissions again with:
+
+```bash
+sudo chown -R 10001:10001 /opt/volumes/rustfs/data/rustfs-data /opt/volumes/rustfs/data/rustfs-logs
+sudo chmod -R 755 /opt/volumes/rustfs/data/rustfs-data /opt/volumes/rustfs/data/rustfs-logs
+./manage-services.sh reset-rustfs
+```
+
 
 ---
 
@@ -661,6 +674,34 @@ View logs:
 
 ```bash
 docker logs -f nginx-proxy-manager
+```
+
+
+---
+
+## RustFS Permission Fix
+
+If RustFS keeps restarting and logs show this error:
+
+```text
+Server encountered an error and is shutting down: Io error: Permission denied (os error 13)
+```
+
+Run this from the project root:
+
+```bash
+./manage-services.sh cleanup-rustfs
+sudo chown -R 10001:10001 /opt/volumes/rustfs/data/rustfs-data /opt/volumes/rustfs/data/rustfs-logs
+sudo chmod -R 755 /opt/volumes/rustfs/data/rustfs-data /opt/volumes/rustfs/data/rustfs-logs
+./manage-services.sh setup-rustfs
+docker logs -f rustfs
+```
+
+To remove RustFS object data and logs while keeping the same `rustfs/.env` credentials:
+
+```bash
+./manage-services.sh data-clean-rustfs
+./manage-services.sh setup-rustfs
 ```
 
 ---

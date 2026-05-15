@@ -239,11 +239,14 @@ setup_rustfs() {
     /opt/volumes/rustfs/data/rustfs-data \
     /opt/volumes/rustfs/data/rustfs-logs
 
-  sudo chown -R "${SUDO_USER:-$USER}:${SUDO_USER:-$USER}" \
+  # RustFS container runs as UID/GID 10001.
+  # The host bind-mounted directories must be owned by 10001,
+  # otherwise RustFS fails with Permission denied on /data or logs.
+  sudo chown -R 10001:10001 \
     /opt/volumes/rustfs/data/rustfs-data \
     /opt/volumes/rustfs/data/rustfs-logs
 
-  sudo chmod -R 775 \
+  sudo chmod -R 755 \
     /opt/volumes/rustfs/data/rustfs-data \
     /opt/volumes/rustfs/data/rustfs-logs
 
@@ -268,11 +271,14 @@ data_clean_rustfs() {
     /opt/volumes/rustfs/data/rustfs-data \
     /opt/volumes/rustfs/data/rustfs-logs
 
-  sudo chown -R "${SUDO_USER:-$USER}:${SUDO_USER:-$USER}" \
+  # RustFS container runs as UID/GID 10001.
+  # The host bind-mounted directories must be owned by 10001,
+  # otherwise RustFS fails with Permission denied on /data or logs.
+  sudo chown -R 10001:10001 \
     /opt/volumes/rustfs/data/rustfs-data \
     /opt/volumes/rustfs/data/rustfs-logs
 
-  sudo chmod -R 775 \
+  sudo chmod -R 755 \
     /opt/volumes/rustfs/data/rustfs-data \
     /opt/volumes/rustfs/data/rustfs-logs
 

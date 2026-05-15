@@ -26,3 +26,17 @@ Persistent volumes:
 ```
 
 `data-clean-rustfs` removes RustFS data/log files but does not change `rustfs/.env`.
+
+
+## Permission Fix
+
+RustFS runs as UID/GID `10001` inside the container. The root script automatically sets ownership correctly.
+
+If RustFS shows `Permission denied (os error 13)`, run from the project root:
+
+```bash
+./manage-services.sh cleanup-rustfs
+sudo chown -R 10001:10001 /opt/volumes/rustfs/data/rustfs-data /opt/volumes/rustfs/data/rustfs-logs
+sudo chmod -R 755 /opt/volumes/rustfs/data/rustfs-data /opt/volumes/rustfs/data/rustfs-logs
+./manage-services.sh setup-rustfs
+```
