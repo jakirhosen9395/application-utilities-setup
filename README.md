@@ -65,6 +65,17 @@ nano kafka/.env
 nano rustfs/.env
 ```
 
+Check these files before running setup:
+
+```bash
+cat elastic-apm/.env
+cat postgres/.env
+cat mongodb/.env
+cat redis/.env
+cat kafka/.env
+cat rustfs/.env
+```
+
 Do not leave any `CHANGE_ME` value unchanged.
 
 Generate strong passwords with:
