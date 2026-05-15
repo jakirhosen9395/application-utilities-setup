@@ -1,0 +1,17 @@
+# Local environment files with credentials
+**/.env
+**/.env.*
+!**/.env.example
+
+# Vagrant runtime files
+servers/app/.vagrant/
+servers/components/.vagrant/
+servers/UI/.vagrant/
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
