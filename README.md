@@ -57,12 +57,12 @@ cp rustfs/.env.example rustfs/.env
 Edit these files before running setup:
 
 ```bash
-nano elastic-apm/.env
-nano postgres/.env
-nano mongodb/.env
-nano redis/.env
-nano kafka/.env
-nano rustfs/.env
+sudo vi elastic-apm/.env
+sudo vi postgres/.env
+sudo vi mongodb/.env
+sudo vi redis/.env
+sudo vi kafka/.env
+sudo vi rustfs/.env
 ```
 
 Check these files before running setup:
