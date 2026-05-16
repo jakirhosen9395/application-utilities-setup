@@ -44,12 +44,12 @@ chmod +x manage-services.sh
 ### Step 3: Create all `.env` files from examples
 
 ```bash
-cp elastic-apm/.env.example elastic-apm/.env
-cp postgres/.env.example postgres/.env
-cp mongodb/.env.example mongodb/.env
-cp redis/.env.example redis/.env
-cp kafka/.env.example kafka/.env
-cp rustfs/.env.example rustfs/.env
+sudo cp elastic-apm/.env.example elastic-apm/.env
+sudo cp postgres/.env.example postgres/.env
+sudo cp mongodb/.env.example mongodb/.env
+sudo cp redis/.env.example redis/.env
+sudo cp kafka/.env.example kafka/.env
+sudo cp rustfs/.env.example rustfs/.env
 ```
 
 ### Step 4: Change every password and required value
