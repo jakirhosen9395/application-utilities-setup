@@ -99,7 +99,7 @@ KAFKA_EXTERNAL_HOST=YOUR_SERVER_IP_OR_DOMAIN
 Example:
 
 ```bash
-KAFKA_EXTERNAL_HOST=172.31.37.4
+KAFKA_EXTERNAL_HOST=172.31.39.197
 ```
 
 ### Step 5: Setup all utilities
@@ -146,15 +146,15 @@ Before each first setup on a new server, you must change all default/example cre
 
 Credential files:
 
-| Utility | Credential File | Must Change |
-|---|---|---|
+| Utility                              | Credential File    | Must Change                                                                        |
+| ------------------------------------ | ------------------ | ---------------------------------------------------------------------------------- |
 | Elastic APM / Elasticsearch / Kibana | `elastic-apm/.env` | `ELASTIC_PASSWORD`, `KIBANA_PASSWORD`, `KIBANA_ENCRYPTION_KEY`, `APM_SECRET_TOKEN` |
-| PostgreSQL | `postgres/.env` | `POSTGRES_PASSWORD`; optionally change `POSTGRES_USER` and `POSTGRES_DB` |
-| MongoDB | `mongodb/.env` | `MONGO_INITDB_ROOT_PASSWORD`; optionally change username and database |
-| Redis | `redis/.env` | `REDIS_PASSWORD` |
-| Kafka | `kafka/.env` | `KAFKA_EXTERNAL_HOST`; keep `KAFKA_CLUSTER_ID` stable after data exists |
-| RustFS | `rustfs/.env` | `RUSTFS_ACCESS_KEY`, `RUSTFS_SECRET_KEY` |
-| NGINX Proxy Manager | Web UI | Change the admin account after first login |
+| PostgreSQL                           | `postgres/.env`    | `POSTGRES_PASSWORD`; optionally change `POSTGRES_USER` and `POSTGRES_DB`           |
+| MongoDB                              | `mongodb/.env`     | `MONGO_INITDB_ROOT_PASSWORD`; optionally change username and database              |
+| Redis                                | `redis/.env`       | `REDIS_PASSWORD`                                                                   |
+| Kafka                                | `kafka/.env`       | `KAFKA_EXTERNAL_HOST`; keep `KAFKA_CLUSTER_ID` stable after data exists            |
+| RustFS                               | `rustfs/.env`      | `RUSTFS_ACCESS_KEY`, `RUSTFS_SECRET_KEY`                                           |
+| NGINX Proxy Manager                  | Web UI             | Change the admin account after first login                                         |
 
 The script will stop setup if a `.env` file still contains `CHANGE_ME`.
 
@@ -178,13 +178,13 @@ Special note for NGINX Proxy Manager: user accounts and UI settings are stored i
 
 Meaning:
 
-| Command | What It Does | Data Removed? | Credentials Changed? |
-|---|---|---:|---:|
-| `setup-all` | Starts all utilities and creates required volume directories | No | No |
-| `cleanup-all` | Stops all utilities | No | No |
-| `reset-all` | Runs cleanup then setup again | No | No |
-| `data-clean-all` | Stops utilities and deletes persistent data directories | Yes | No `.env` files are changed |
-| `status` | Shows Docker container status | No | No |
+| Command          | What It Does                                                 | Data Removed? |        Credentials Changed? |
+| ---------------- | ------------------------------------------------------------ | ------------: | --------------------------: |
+| `setup-all`      | Starts all utilities and creates required volume directories |            No |                          No |
+| `cleanup-all`    | Stops all utilities                                          |            No |                          No |
+| `reset-all`      | Runs cleanup then setup again                                |            No |                          No |
+| `data-clean-all` | Stops utilities and deletes persistent data directories      |           Yes | No `.env` files are changed |
+| `status`         | Shows Docker container status                                |            No |                          No |
 
 ---
 
@@ -259,17 +259,17 @@ Meaning:
 
 All persistent service data is stored under `/opt/volumes`.
 
-| Utility | Host Volume Path | Container Path |
-|---|---|---|
-| ElasticSearch | `/opt/volumes/elastic-apm/elasticsearch-data` | `/usr/share/elasticsearch/data` |
-| PostgreSQL | `/opt/volumes/postgres/data` | `/var/lib/postgresql/data` |
-| MongoDB | `/opt/volumes/mongodb/data` | `/data/db` |
-| Redis | `/opt/volumes/redis/data` | `/data` |
-| Kafka | `/opt/volumes/kafka/data` | `/var/lib/kafka/data` |
-| RustFS data | `/opt/volumes/rustfs/data/rustfs-data` | `/data` |
-| RustFS logs | `/opt/volumes/rustfs/data/rustfs-logs` | `/logs` |
-| NGINX Proxy Manager data | `/opt/volumes/npm/data` | `/data` |
-| NGINX Proxy Manager certificates | `/opt/volumes/npm/letsencrypt` | `/etc/letsencrypt` |
+| Utility                          | Host Volume Path                              | Container Path                  |
+| -------------------------------- | --------------------------------------------- | ------------------------------- |
+| ElasticSearch                    | `/opt/volumes/elastic-apm/elasticsearch-data` | `/usr/share/elasticsearch/data` |
+| PostgreSQL                       | `/opt/volumes/postgres/data`                  | `/var/lib/postgresql/data`      |
+| MongoDB                          | `/opt/volumes/mongodb/data`                   | `/data/db`                      |
+| Redis                            | `/opt/volumes/redis/data`                     | `/data`                         |
+| Kafka                            | `/opt/volumes/kafka/data`                     | `/var/lib/kafka/data`           |
+| RustFS data                      | `/opt/volumes/rustfs/data/rustfs-data`        | `/data`                         |
+| RustFS logs                      | `/opt/volumes/rustfs/data/rustfs-logs`        | `/logs`                         |
+| NGINX Proxy Manager data         | `/opt/volumes/npm/data`                       | `/data`                         |
+| NGINX Proxy Manager certificates | `/opt/volumes/npm/letsencrypt`                | `/etc/letsencrypt`              |
 
 The script creates these directories automatically during setup.
 
@@ -289,6 +289,7 @@ sudo ls -lah /opt/volumes/kafka/data
 sudo ls -lah /opt/volumes/rustfs/data
 sudo ls -lah /opt/volumes/npm
 ```
+
 RustFS permission note:
 
 - RustFS runs inside the container as UID/GID `10001`.
@@ -301,7 +302,6 @@ sudo chown -R 10001:10001 /opt/volumes/rustfs/data/rustfs-data /opt/volumes/rust
 sudo chmod -R 755 /opt/volumes/rustfs/data/rustfs-data /opt/volumes/rustfs/data/rustfs-logs
 ./manage-services.sh reset-rustfs
 ```
-
 
 ---
 
@@ -686,7 +686,6 @@ View logs:
 ```bash
 docker logs -f nginx-proxy-manager
 ```
-
 
 ---
 
